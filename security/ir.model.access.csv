@@ -1,0 +1,2 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_connecteur_seguinus_connecteur_seguinus,connecteur_seguinus.connecteur_seguinus,model_connecteur_seguinus_connecteur_seguinus,,1,0,0,0

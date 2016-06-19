@@ -1,0 +1,120 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<openerp>
+    <data>
+        <record model="connecteur_seguinus.room" id="room0">
+            <field name="name">isabelle</field>
+            <field name="description">jolieCh</field>
+            <field name="petits_lits">1</field>
+            <field name="grands_lits">1</field>
+
+        </record>
+        <record model="connecteur_seguinus.room" id="nouguier">
+            <field name="name">nouguier</field>
+            <field name="description">Tres jolie ch</field>
+            <field name="petits_lits">2</field>
+            <field name="grands_lits">1</field>
+        </record>
+
+        <record model="ir.ui.view" id="connecteur_seguinus_form_view">
+            <field name="name">room.form</field>
+            <field name="model">connecteur_seguinus.room</field>
+            <field name="arch" type="xml">
+                <form string="Room Form">
+                    <sheet>
+                        <group>
+                            <field name="name"/>
+                        </group>
+                        <notebook>
+                            <page string="Description">
+                                Info:<field name="description"/>
+                                petits lits:<field name="petits_lits"/>
+                                grands lits:<field name="grands_lits"/>
+                            </page>
+                            <page string="About">
+                                Fait par Simon Pessemesse
+                            </page>
+                        </notebook>
+
+                    </sheet>
+                </form>
+            </field>
+        </record>
+        <record model="ir.ui.view" id="connecteur_seguinus_form_view2">
+            <field name="name">booking.form</field>
+            <field name="model">connecteur_seguinus.booking</field>
+            <field name="arch" type="xml">
+                <form string="Room Form">
+                    <sheet>
+                        <group>
+                            <field name="name"/>
+                        </group>
+                        <notebook>
+                            <page string="Description">
+                                nom:<field name="name"/>
+                                debut:<field name="dateDebut"/>
+                                fin:<field name="dateFin"/>
+                                chambres:<field name="room_ids"/>
+                            </page>
+                        </notebook>
+
+                    </sheet>
+                </form>
+            </field>
+        </record>
+
+        <record model="ir.ui.view" id="room_search_view">
+            <field name="name">room.search</field>
+            <field name="model">connecteur_seguinus.room</field>
+            <field name="arch" type="xml">
+                <search>
+                    <field name="name"/>
+                    <field name="description"/>
+                </search>
+            </field>
+        </record>
+
+
+        <!-- window action -->
+        <!--
+            The following tag is an action definition for a "window action",
+            that is an action opening a view or a set of views
+        -->
+        <record model="ir.actions.act_window" id="room_list_action">
+            <field name="name">Chambres</field>
+            <field name="res_model">connecteur_seguinus.room</field>
+            <field name="view_type">form</field>
+            <field name="view_mode">tree,form</field>
+            <field name="help" type="html">
+                <p class="oe_view_nocontent_create">creer la premiere chambre
+                </p>
+            </field>
+        </record>
+        <record model="ir.actions.act_window" id="booking_list_action">
+            <field name="name">Reservation</field>
+            <field name="res_model">connecteur_seguinus.booking</field>
+            <field name="view_type">form</field>
+            <field name="view_mode">tree,form</field>
+            <field name="help" type="html">
+                <p class="oe_view_nocontent_create">creer la premiere reservation
+                </p>
+            </field>
+        </record>
+
+        <!-- top level menu: no parent -->
+        <menuitem id="main_connecteur_seguinus_menu" name="Hotel"/>
+        <!-- A first level in the left side menu is needed
+             before using action= attribute -->
+        <menuitem id="connecteur_seguinus_menu" name="Ici se trouvent les chambres et Reservations"
+                  parent="main_connecteur_seguinus_menu"/>
+        <!-- the following menuitem should appear *after*
+             its parent openacademy_menu and *after* its
+             action course_list_action -->
+        <menuitem id="rooms_menu" name="Rooms" parent="connecteur_seguinus_menu"
+                  action="room_list_action"/>
+        <menuitem id="bookings_menu" name="Bookings" parent="connecteur_seguinus_menu"
+                  action="booking_list_action"/>
+        <!-- Full id location:
+             action="openacademy.course_list_action"
+             It is not required when it is the same module -->
+    </data>
+</openerp>
