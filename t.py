@@ -37,4 +37,5 @@ r=models.execute_kw(
 #for rr,vv in r.iteritems():
  #   print rr,vv
 print(toCreate)
-id = models.execute_kw(db, uid, password, 'account.invoice', 'create', [toCreate])
+for i in range(10):
+    id = models.execute_kw(db, uid, password, 'account.invoice', 'create', [toCreate])
